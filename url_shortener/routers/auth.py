@@ -22,7 +22,7 @@ async def login(payload: OAuth2PasswordRequestForm = Depends()):
 
     if not verify_password(payload.password, current_user.hashed_password):
         db.close()
-        raise HTTPException(status_code=400, detail="Пользователя не существует")
+        raise HTTPException(status_code=400, detail="Не правильный пароль")
 
     token = generator_access_token(current_user.id)
 
